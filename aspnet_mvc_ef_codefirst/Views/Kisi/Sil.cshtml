@@ -1,0 +1,52 @@
+﻿@model aspnet_mvc_ef_codefirst.Models.Kisiler
+
+@{
+    ViewBag.Title = "Kisi Sil";
+}
+
+<h2>Kisi Sil</h2>
+
+<p> Aşağıdaki kişi kaydını silmek istediğinizden emin misiniz ?</p>
+
+
+
+    <table>
+        <tr>
+            <td><b>Ad</b> :</td>
+            <td> @Model.Ad</td>
+        </tr>
+        <tr>
+            <td><b>Soyad:</b></td>
+            <td> @Model.Soyad</td>
+        </tr>
+        <tr>
+            <td> <b>Yas :</b></td>
+            <td> @Model.Yas</td>
+        </tr>
+
+    </table>
+
+    <br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x=>x.ID)
+    <div class="input-group">
+        <input type="submit" class="btn btn-success" value="Sil" />
+    </div>
+
+    <br />
+
+    <div class="input-group ">
+        @if (ViewBag.Status != null)
+        {
+            <div class="alert alert-@ViewBag.Status" role="alert">
+                @ViewBag.Result
+            </div>
+
+        }
+
+    </div>
+}
+
+

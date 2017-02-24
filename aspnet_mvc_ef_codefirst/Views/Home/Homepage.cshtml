@@ -1,0 +1,59 @@
+﻿@using aspnet_mvc_ef_codefirst.ViewModels.Home
+
+@model HomePageViewModel
+@{
+    ViewBag.Title = "Homepage";
+}
+
+
+<div class="container-fluid">
+
+    <hr />
+    <div class="row">
+
+        <div class="col-sm-6">
+
+            <div>
+                @Html.ActionLink("Yeni Kisi", "Yeni", "Kisi", null, new { @class = "btn btn-primary" })
+                <br />
+                <br />
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item active"> Kisiler</li>
+                @foreach (var kisi in Model.kisiler)
+                {
+                    <li class="list-group-item">
+                     
+                        @Html.ActionLink("Düzenle","Duzenle","Kisi",new { kisi_id=kisi.ID},new {@class="btn btn-warning btn-xs"})
+                        @Html.ActionLink("Sil", "Sil", "Kisi", new { kisi_id = kisi.ID }, new { @class = "btn btn-danger btn-xs" })
+                        <span class="glyphicon glyphicon-user green"></span> @(kisi.Ad + " " + kisi.Soyad + "," + kisi.Yas)
+                    </li>
+                }
+            </ul>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <div>
+                @Html.ActionLink("Yeni Adres","YeniAdres","Adres",null,new {@class="btn btn-primary"})
+                <br />
+                <br />
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item active"> Adresler</li>
+                @foreach (var adres in Model.adresler)
+                {
+                    <li class="list-group-item">
+                        @Html.ActionLink("Düzenle", "Duzenle", "Adres", new { adres_id = adres.ID}, new { @class = "btn btn-warning btn-xs" })
+                        @Html.ActionLink("Sil", "Sil", "Adres", new { adres_id = adres.ID }, new { @class = "btn btn-danger btn-xs" })
+                        <span class="glyphicon glyphicon-home red"></span> @adres.AdresTanim (@(adres.Kisi.Ad + " " + adres.Kisi.Soyad))
+                    </li>
+                }
+            </ul>
+
+
+        </div>
+    </div>
+
+</div>
